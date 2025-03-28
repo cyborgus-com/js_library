@@ -1,8 +1,10 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 html, body {
     height: 100%; /* Ensure both html and body take full height */
     margin: 0; /* Remove default margin */
+    font-family: Roboto, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
 }
 
 body {
@@ -17,10 +19,12 @@ body {
     border-radius: 24px;
     max-width: 35%;
     max-height: 50%;
-    min-width: 200px;
-    min-height: 100px;
+    min-width: 400px;
+    min-height: 400px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     box-shadow: 2px 2px 14px rgb(181, 181, 181);
+    font-size: 1rem;
 }
