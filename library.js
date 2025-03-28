@@ -18,8 +18,31 @@ function addBookToLibrary(author, title, pages, genre, read="No") {
 
     const book_temp = new Book(id, author, title, pages, genre, read);
     myLibrary.push(book_temp);
+    // console.log(myLibrary);
 }
 
 function displayBooks(arr) {
 
 }
+
+const authorInput = document.querySelector("#author");
+const titleInput = document.querySelector("#title");
+const pagesInput = document.querySelector("#pages");
+const genreInput = document.querySelector("#genre");
+const submit = document.querySelector("#submit");
+
+submit.addEventListener("click", (event) => {
+    event.preventDefault();
+    // const author = authorInput.value;
+    // const title = titleInput.value;
+    // const pages = pagesInput.value;
+    // const genre = genreInput.value;
+    addBookToLibrary(authorInput.value, 
+        titleInput.value, 
+        pagesInput.value, 
+        genreInput.value);
+    authorInput.value = "";
+    titleInput.value = "";
+    pagesInput.value = "";
+    genreInput.value = "";
+});

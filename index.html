@@ -10,7 +10,7 @@
     <div class="main-card">
         <h1>Library</h1>
         
-        <form action="#" method="post">
+        <form action="#" method="post" id="bookform">
             <div>
                 <label for="author">Author:</label>
                 <input type="text" name="author" id="author" placeholder="First Name Last Name...">
@@ -24,12 +24,20 @@
                 <input type="number" name="pages" id="pages" placeholder="# of Pages...">
             </div>
             <div>
-                <label for="genre">Author:</label>
+                <label for="genre">Genre:</label>
                 <input type="text" name="genre" id="genre" placeholder="Genre...">
             </div>
-            <button>Submit</button>
+            <button id="submit">Submit</button>
         </form>
 
     </div>
+
+    <div class="book-list">
+        <h1>Books List:</h1>
+        <div></div>
+    </div>
+
+    <script src="library.js"></script>
+
 </body>
 </html>
