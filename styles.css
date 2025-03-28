@@ -1,0 +1,26 @@
+
+
+html, body {
+    height: 100%; /* Ensure both html and body take full height */
+    margin: 0; /* Remove default margin */
+}
+
+body {
+    background-color: rgb(196, 227, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-card {
+    background-color: white;
+    border-radius: 24px;
+    max-width: 35%;
+    max-height: 50%;
+    min-width: 200px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 14px rgb(181, 181, 181);
+}
