@@ -22,6 +22,7 @@ function addBookToLibrary(author, title, pages, genre, read="No") {
 }
 
 function displayBooks(arr) {
+// Write code here to display books and add a `remove` button, and read/unread toggle
 
 }
 
@@ -30,19 +31,18 @@ const titleInput = document.querySelector("#title");
 const pagesInput = document.querySelector("#pages");
 const genreInput = document.querySelector("#genre");
 const submit = document.querySelector("#submit");
+const form = document.querySelector("form");
+
 
 submit.addEventListener("click", (event) => {
     event.preventDefault();
-    // const author = authorInput.value;
-    // const title = titleInput.value;
-    // const pages = pagesInput.value;
-    // const genre = genreInput.value;
+
     addBookToLibrary(authorInput.value, 
         titleInput.value, 
         pagesInput.value, 
         genreInput.value);
-    authorInput.value = "";
-    titleInput.value = "";
-    pagesInput.value = "";
-    genreInput.value = "";
+
+    form.reset();
 });
+
+// add event listener for remove button next to books and call removal function
