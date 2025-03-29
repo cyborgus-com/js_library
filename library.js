@@ -23,7 +23,13 @@ function addBookToLibrary(author, title, pages, genre, read="No") {
 
 function displayBooks(arr) {
 // Write code here to display books and add a `remove` button, and read/unread toggle
-
+    let booksListDiv = document.querySelector(".book-list div");
+    booksListDiv.innerHTML = "";
+    for (let i=0; i<myLibrary.length; i++) {
+        const newBook = document.createElement("div");
+        newBook.innerText = `"${myLibrary[i].title}" by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, Genre: ${myLibrary[i].genre}`;
+        booksListDiv.appendChild(newBook);
+    }
 }
 
 const authorInput = document.querySelector("#author");
@@ -43,6 +49,7 @@ submit.addEventListener("click", (event) => {
         genreInput.value);
 
     form.reset();
+    displayBooks(myLibrary);
 });
 
 // add event listener for remove button next to books and call removal function
