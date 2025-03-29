@@ -26,11 +26,27 @@ function displayBooks(arr) {
     let booksListDiv = document.querySelector(".book-list div");
     booksListDiv.innerHTML = "";
     for (let i=0; i<myLibrary.length; i++) {
+        const newBookContainer = document.createElement('div');
+        newBookContainer.style.display = 'flex';
+        newBookContainer.style.flexDirection = 'row'; // Ensure horizontal layout
+        newBookContainer.style.alignItems = 'center'; // Optional: Align items vertically in the center
+
         const newBook = document.createElement("div");
-        newBook.innerText = `"${myLibrary[i].title}" by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, Genre: ${myLibrary[i].genre}`;
-        booksListDiv.appendChild(newBook);
+        newBook.innerText = `"${myLibrary[i].title}" by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, Genre: ${myLibrary[i].genre}  `;
+        newBookContainer.appendChild(newBook);
+        let removeButton = document.createElement('button');
+        removeButton.innerText = "X";
+        removeButton.id = "removeButton";
+        removeButton.style.marginLeft = "12px";
+        newBookContainer.appendChild(removeButton);
+        booksListDiv.appendChild(newBookContainer);
     }
 }
+
+function removeDiv() {
+    const element = document.querySelector("#removeButton");
+    element.remove();
+  }  
 
 const authorInput = document.querySelector("#author");
 const titleInput = document.querySelector("#title");
@@ -42,14 +58,22 @@ const form = document.querySelector("form");
 
 submit.addEventListener("click", (event) => {
     event.preventDefault();
-
-    addBookToLibrary(authorInput.value, 
+    if (authorInput.value.length >0 && 
+        titleInput.value.length >0 &&
+        pagesInput.value.length >0 &&
+        genreInput.value.length >0) {
+        addBookToLibrary(authorInput.value, 
         titleInput.value, 
         pagesInput.value, 
         genreInput.value);
 
     form.reset();
     displayBooks(myLibrary);
+    }
+    else {
+        throw new Error("One of the fields is empty!");
+        alert("One of the fields is empty!");
+    }
 });
 
 // add event listener for remove button next to books and call removal function
