@@ -25,6 +25,7 @@ function displayBooks(arr) {
 // Write code here to display books and add a `remove` button, and read/unread toggle
     let booksListDiv = document.querySelector(".book-list div");
     booksListDiv.innerHTML = "";
+    
     for (let i=0; i<myLibrary.length; i++) {
         const newBookContainer = document.createElement('div');
         newBookContainer.style.display = 'flex';
@@ -34,19 +35,21 @@ function displayBooks(arr) {
         const newBook = document.createElement("div");
         newBook.innerText = `"${myLibrary[i].title}" by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, Genre: ${myLibrary[i].genre}  `;
         newBookContainer.appendChild(newBook);
+
         let removeButton = document.createElement('button');
         removeButton.innerText = "X";
-        removeButton.id = "removeButton";
         removeButton.style.marginLeft = "12px";
+
+        removeButton.onclick = () => newBookContainer.remove(); // Simplest removal
+        removeButton.onclick = () => {
+            myLibrary.splice(i, 1); // Remove the item from myLibrary
+            newBookContainer.remove(); // Remove from DOM
+        };
+
         newBookContainer.appendChild(removeButton);
         booksListDiv.appendChild(newBookContainer);
     }
 }
-
-function removeDiv() {
-    const element = document.querySelector("#removeButton");
-    element.remove();
-  }  
 
 const authorInput = document.querySelector("#author");
 const titleInput = document.querySelector("#title");
