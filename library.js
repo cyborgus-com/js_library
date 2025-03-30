@@ -44,11 +44,6 @@ function displayBooks(arr) {
             newBookContainer.remove(); // Remove from DOM
         }
 
-        removeButton.onclick = () => {
-            myLibrary.splice(i, 1); // Remove the item from myLibrary
-            newBookContainer.remove(); // Remove from DOM
-        }
-
         let toggleRead = document.createElement('button');
         toggleRead.style.marginLeft = "12px";
 
