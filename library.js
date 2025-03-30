@@ -52,7 +52,6 @@ function displayBooks(arr) {
         // Toggle button code
         let toggleButton = document.createElement('button');
         toggleButton.style.marginLeft = "12px";
-        toggleButton.style.padding = "0px";
         toggleButton.style.width = "100px";
         updateToggleButton(toggleButton, book);
         
