@@ -11,6 +11,11 @@ function Book(id, author, title, pages, genre, read) {
     this.read = read;
 }
 
+// adding toggleRead method to Book prototype;
+Book.prototype.toggleRead = function () {
+    this.read = this.read === "Yes" ? "No": "Yes";
+}
+
 function addBookToLibrary(author, title, pages, genre, read="No") {
     // take params, create a book then store it in the array
 
@@ -25,59 +30,53 @@ function displayBooks(arr) {
     let booksListDiv = document.querySelector(".book-list div");
     booksListDiv.innerHTML = "";
     
-    for (let i=0; i<myLibrary.length; i++) {
+    arr.forEach((book, index) => {
+
         const newBookContainer = document.createElement('div');
         newBookContainer.style.display = 'flex';
         newBookContainer.style.flexDirection = 'row'; // Ensure horizontal layout
         newBookContainer.style.alignItems = 'center'; // Optional: Align items vertically in the center
 
-        // const newBook = document.createElement("div");
-        newBookContainer.innerText = `"${myLibrary[i].title}" by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, Genre: ${myLibrary[i].genre}, Read: ${myLibrary[i].read}  `;
-        // newBookContainer.appendChild(newBook);
+        newBookContainer.innerText = `"${book.title}" by ${book.author}, ${book.pages} pages, Genre: ${book.genre}`;
 
+        // Remove button code
         let removeButton = document.createElement('button');
         removeButton.innerText = "X";
         removeButton.style.marginLeft = "12px";
 
         removeButton.onclick = () => {
-            myLibrary.splice(i, 1); // Remove the item from myLibrary
+            arr.splice(index, 1); // Remove the item from myLibrary
             newBookContainer.remove(); // Remove from DOM
         }
 
-        let toggleRead = document.createElement('button');
-        toggleRead.style.marginLeft = "12px";
-
-        if (myLibrary[i].read=="Yes") {
-            toggleRead.innerText = "Read";
-            toggleRead.style.backgroundColor = "green";    
-        }
-        else {
-            toggleRead.innerText = "Unread";
-            toggleRead.style.backgroundColor = "red";
-        }
+        // Toggle button code
+        let toggleButton = document.createElement('button');
+        toggleButton.style.marginLeft = "12px";
+        toggleButton.style.padding = "0px";
+        toggleButton.style.width = "100px";
+        updateToggleButton(toggleButton, book);
         
-        toggleRead.onclick = () => {
-            if (myLibrary[i].read == "No") {
-                myLibrary[i].read = "Yes";
-                toggleRead.innerText = "Read";
-                toggleRead.style.backgroundColor = "green";
-            }
-            else {
-                myLibrary[i].read = "No";
-                toggleRead.innerText = "Unread";
-                toggleRead.style.backgroundColor = "red";
-            }
+        toggleButton.onclick = () => {
+            book.toggleRead();
+            updateToggleButton(toggleButton, book);
+            newBookContainer.innerText = `"${book.title}" by ${book.author}, ${book.pages} pages, Genre: ${book.genre}`;
+            newBookContainer.appendChild(removeButton);
+            newBookContainer.appendChild(toggleButton);    
         }
 
         newBookContainer.appendChild(removeButton);
-        newBookContainer.appendChild(toggleRead);
+        newBookContainer.appendChild(toggleButton);
         booksListDiv.appendChild(newBookContainer);
-    }
+    });
+}
+
+function updateToggleButton(button, book) {
+    button.innerText = book.read === "Yes" ? "Read" : "Un-read";
+    button.style.backgroundColor = book.read === "Yes" ? "lightgreen" : "orange";
 }
 
 const submit = document.querySelector("#submit");
 const form = document.querySelector("form");
-
 
 submit.addEventListener("click", (event) => {
     event.preventDefault();
